@@ -1,0 +1,32 @@
+﻿@rendermode InteractiveServer
+@inject IJSRuntime JS
+
+<div style="color:white" id="mySidebar" class="sidebar">
+    <button class="closebtn" @onclick="closeNav">×</button>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+</div>
+
+<div id="main">
+    <button class="openbtn" @onclick="openNav">☰ Open Sidebar</button>
+</div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+   
+        await JS.InvokeVoidAsync("getElements");
+
+    }
+    protected async Task openNav()
+    {
+        await JS.InvokeVoidAsync("openNav");
+    }
+
+    protected async Task closeNav()
+    {
+        await JS.InvokeVoidAsync("closeNav");
+    }
+}
